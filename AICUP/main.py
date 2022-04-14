@@ -106,41 +106,28 @@ plot_img(train_images, train_labels)
 
 #VGG16 model
 model = Sequential()
-model.add(Conv2D(filters=64, kernel_size=(3,3), padding='same', input_shape=(224,224,3)))
-model.add(LeakyReLU(alpha=0.2))
-model.add(Conv2D(filters=64, kernel_size=(3,3), padding='same'))
-model.add(LeakyReLU(alpha=0.2))
+model.add(Conv2D(filters=64, kernel_size=(3,3), padding='same', input_shape=(224,224,3), activation='relu'))
+model.add(Conv2D(filters=64, kernel_size=(3,3), padding='same', activation='relu'))
 model.add(MaxPooling2D(pool_size=(2,2)))
-model.add(Conv2D(filters=128, kernel_size=(3,3), padding='same'))
-model.add(LeakyReLU(alpha=0.2))
-model.add(Conv2D(filters=128, kernel_size=(3,3), padding='same'))
-model.add(LeakyReLU(alpha=0.2))
+model.add(Conv2D(filters=128, kernel_size=(3,3), padding='same', activation='relu'))
+model.add(Conv2D(filters=128, kernel_size=(3,3), padding='same', activation='relu'))
 model.add(MaxPooling2D(pool_size=(2,2)))
-model.add(Conv2D(filters=256, kernel_size=(3,3), padding='same'))
-model.add(LeakyReLU(alpha=0.2))
-model.add(Conv2D(filters=256, kernel_size=(3,3), padding='same'))
-model.add(LeakyReLU(alpha=0.2))
-model.add(Conv2D(filters=256, kernel_size=(3,3), padding='same'))
-model.add(LeakyReLU(alpha=0.2))
+model.add(Conv2D(filters=256, kernel_size=(3,3), padding='same', activation='relu'))
+model.add(Conv2D(filters=256, kernel_size=(3,3), padding='same', activation='relu'))
+model.add(Conv2D(filters=256, kernel_size=(3,3), padding='same', activation='relu'))
 model.add(MaxPooling2D(pool_size=(2,2)))
-model.add(Conv2D(filters=512, kernel_size=(3,3), padding='same'))
-model.add(LeakyReLU(alpha=0.2))
-model.add(Conv2D(filters=512, kernel_size=(3,3), padding='same'))
-model.add(LeakyReLU(alpha=0.2))
-model.add(Conv2D(filters=512, kernel_size=(3,3), padding='same'))
-model.add(LeakyReLU(alpha=0.2))
+model.add(Conv2D(filters=512, kernel_size=(3,3), padding='same', activation='relu'))
+model.add(Conv2D(filters=512, kernel_size=(3,3), padding='same', activation='relu'))
+model.add(Conv2D(filters=512, kernel_size=(3,3), padding='same', activation='relu'))
 model.add(MaxPooling2D(pool_size=(2,2)))
-model.add(Conv2D(filters=512, kernel_size=(3,3), padding='same'))
-model.add(LeakyReLU(alpha=0.2))
-model.add(Conv2D(filters=512, kernel_size=(3,3), padding='same'))
-model.add(LeakyReLU(alpha=0.2))
-model.add(Conv2D(filters=512, kernel_size=(3,3), padding='same'))
-model.add(LeakyReLU(alpha=0.2))
+model.add(Conv2D(filters=512, kernel_size=(3,3), padding='same', activation='relu'))
+model.add(Conv2D(filters=512, kernel_size=(3,3), padding='same', activation='relu'))
+model.add(Conv2D(filters=512, kernel_size=(3,3), padding='same', activation='relu'))
 model.add(MaxPooling2D(pool_size=(2,2)))
 model.add(Flatten())
-model.add(Dense(512, activation=LeakyReLU(alpha=0.2)))
+model.add(Dense(4096, activation='relu'))
 model.add(Dropout(rate=0.5)) 
-model.add(Dense(256, activation=LeakyReLU(alpha=0.2)))
+model.add(Dense(4096, activation='relu'))
 model.add(Dropout(rate=0.5))
 model.add(Dense(15, activation='softmax')) 
 
@@ -150,8 +137,7 @@ model.compile(loss = 'sparse_categorical_crossentropy', metrics = ['accuracy'], 
 model.summary()
 
 n_epochs = 75
-# n_cycles = n_epochs / 25
-# ca = SnapshotEnsemble(n_epochs, n_cycles, 0.0001)
+
 
 #CheckPoint
 filepath='/content/drive/MyDrive/AICUP-G/model/best_model.h5'
@@ -159,7 +145,6 @@ checkpoint = ModelCheckpoint(filepath, monitor='val_accuracy', verbose=1, save_b
 callbacks_list = [checkpoint]
 
 # train_history = model.fit(x = train_images, y = train_labels, validation_split = 0.2, epochs = n_epochs, batch_size = 64, callbacks = [ca])
-train_history = model.fit(x = train_images, y = train_labels, validation_split = 0.2, epochs = n_epochs, batch_size = 64, callbacks = callbacks_list)
 
 show_train_history(train_history, 'accuracy', 'val_accuracy')
 show_train_history(train_history, 'loss', 'val_loss')
