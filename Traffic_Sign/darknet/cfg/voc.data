@@ -1,0 +1,6 @@
+classes= 4
+train  = /content/drive/MyDrive/2022_H1_project/0305colab_only/darknet/train1.txt
+valid  = /content/drive/MyDrive/2022_H1_project/0305colab_only/darknet/test1.txt
+names = /content/drive/MyDrive/2022_H1_project/0305colab_only/darknet/classes.names
+backup = backup
+
