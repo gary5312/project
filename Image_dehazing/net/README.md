@@ -15,3 +15,4 @@
 * 實景拍攝
 
 ![GITHUB](https://github.com/gary5312/project/blob/main/Image_dehazing/net/pic/3-1.png)
+![GITHUB](https://github.com/gary5312/project/blob/main/Image_dehazing/net/pic/3-2.png)
