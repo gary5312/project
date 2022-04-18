@@ -14,5 +14,10 @@
 
 * 實景拍攝
 
+帶霧影像
+
 ![GITHUB](https://github.com/gary5312/project/blob/main/Image_dehazing/net/pic/3-1.png)
+
+去霧影像
+
 ![GITHUB](https://github.com/gary5312/project/blob/main/Image_dehazing/net/pic/3-2.png)
